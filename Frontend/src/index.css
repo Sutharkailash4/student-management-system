@@ -8,7 +8,7 @@ html,body{
   width: 100%;
   min-height: 100%;
   color: white;
-  background: linear-gradient(-45deg ,rgb(146, 68, 146),rgb(58, 58, 145),rgb(143, 70, 70));
+  background: linear-gradient(-45deg ,rgb(141, 63, 141),rgb(58, 58, 145),rgb(143, 70, 70));
 }
 #root{
   width: 100%;
