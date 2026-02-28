@@ -5,7 +5,6 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 const path = require("path");
-app.use(express.static("../public/assets"));
 
 app.post("/api/student", async (req, res) => {
     const studentData = req.body;
@@ -85,10 +84,6 @@ app.delete("/api/student/:id",async (req, res) => {
             error
         })
     }
-})
-
-app.use("*name",(req,res)=>{
-    res.sendFile(path.join(__dirname +  "..\public\index.html"));
 })
 
 module.exports = app;
