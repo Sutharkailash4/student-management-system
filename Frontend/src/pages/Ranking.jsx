@@ -2,16 +2,28 @@ import React, { useContext } from "react";
 import { Student_data_context } from "../studentContext/SudentContext";
 
 const Ranking = () => {
-  const { data } = useContext(Student_data_context);
+  const context = useContext(Student_data_context);
+
+  if (!context || !Array.isArray(context.data)) {
+    return <h3>Loading...</h3>;
+  }
+
+  const { data } = context;
 
   const studentsWithTotal = data.map((student) => {
-    const total = student.marks.reduce((sum, m) => sum + m.score, 0);
+    const marks = Array.isArray(student.marks) ? student.marks : [];
+
+    const total = marks.reduce(
+      (sum, m) => sum + Number(m?.score || 0),
+      0
+    );
+
     return { ...student, total };
   });
 
-  const sortedStudents = [...studentsWithTotal].sort(
-    (a, b) => b.total - a.total
-  );
+  const sortedStudents = studentsWithTotal
+    .filter(Boolean)
+    .sort((a, b) => b.total - a.total);
 
   return (
     <div className="ranking_main_box">
@@ -27,30 +39,36 @@ const Ranking = () => {
         </thead>
 
         <tbody>
-          {sortedStudents.map((elem, idx) => {
-            const Percentage = (elem.total / 500) * 100;
+          {sortedStudents.length === 0 ? (
+            <tr>
+              <td colSpan="5">No data found</td>
+            </tr>
+          ) : (
+            sortedStudents.map((elem, idx) => {
+              const percentage = (elem.total / 500) * 100;
 
-            const Grade =
-              Percentage >= 90
-                ? "A"
-                : Percentage >= 85
-                ? "B"
-                : Percentage >= 75
-                ? "C"
-                : Percentage >= 40
-                ? "D"
-                : "Fail";
+              const grade =
+                percentage >= 90
+                  ? "A"
+                  : percentage >= 85
+                  ? "B"
+                  : percentage >= 75
+                  ? "C"
+                  : percentage >= 40
+                  ? "D"
+                  : "Fail";
 
-            return (
-              <tr key={idx}>
-                <td>{elem.name}</td>
-                <td>{elem.total}</td>
-                <td>{Percentage.toFixed(2)}%</td>
-                <td>{Grade}</td>
-                <td>{idx + 1}</td>
-              </tr>
-            );
-          })}
+              return (
+                <tr key={elem._id || idx}>
+                  <td>{elem.name}</td>
+                  <td>{elem.total}</td>
+                  <td>{percentage.toFixed(2)}%</td>
+                  <td>{grade}</td>
+                  <td>{idx + 1}</td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>
