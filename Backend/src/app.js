@@ -7,7 +7,7 @@ app.use(cors());
 const path = require("path");
 app.use(express.static("./public"));
 
-app.post("/api/student", async (req, res) => {
+app.post("https://student-management-system-1-yplg.onrender.com/api/student", async (req, res) => {
     const studentData = req.body;
     if (!studentData.name || studentData.name.trim() === "") return res.status(400).json({ message: "Name is Required" })
     else if (!studentData.class_no || Number.isNaN(studentData.class_no)) return res.status(400).json({ message: "Class is Required" })
@@ -35,7 +35,7 @@ app.post("/api/student", async (req, res) => {
     }
 })
 
-app.get("/api/student", async (req, res) => {
+app.get("https://student-management-system-1-yplg.onrender.com/api/student", async (req, res) => {
     try {
         const studentData = await studentModel.find();
         res.status(201).json({
@@ -50,7 +50,7 @@ app.get("/api/student", async (req, res) => {
     }
 })
 
-app.patch("/api/student/:id", async (req, res) => {
+app.patch("https://student-management-system-1-yplg.onrender.com/api/student/:id", async (req, res) => {
     const id = req.params.id;
     const { name, class_no, roll_no ,marks} = req.body;
     try {
@@ -72,7 +72,7 @@ app.patch("/api/student/:id", async (req, res) => {
     }
 })
 
-app.delete("/api/student/:id",async (req, res) => {
+app.delete("https://student-management-system-1-yplg.onrender.com/api/student/:id",async (req, res) => {
     const id = req.params.id;
     try{
         await studentModel.findByIdAndDelete(id);
