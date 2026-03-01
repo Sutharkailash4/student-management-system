@@ -12,7 +12,7 @@ const Form = () => {
     const {data,setData,updateData,setUpdateData} = useContext(Student_data_context);
 
     const getData = () => {
-        axios.get("http://localhost:3000/api/student")
+        axios.get("https://student-management-system-1-yplg.onrender.com/student_list/api/student")
         .then((res)=>{
             setData(res.data.studentData);
         })
@@ -37,7 +37,7 @@ const Form = () => {
         }
         else {
             if(!!updateData){
-                axios.patch("http://localhost:3000/api/student/"+updateData._id,{
+                axios.patch("https://student-management-system-1-yplg.onrender.com/student_list/api/student/"+updateData._id,{
                      name : name,
                 class_no : classs,
                 roll_no : roll_no,
@@ -66,7 +66,7 @@ const Form = () => {
             setComputer("");
             setUpdateData(null);
             } else {
-            axios.post("http://localhost:3000/api/student",{
+            axios.post("https://student-management-system-1-yplg.onrender.com/student_list/api/student",{
                 name : name,
                 class_no : classs,
                 roll_no : roll_no,
