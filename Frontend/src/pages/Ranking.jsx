@@ -60,11 +60,11 @@ const Ranking = () => {
 
               return (
                 <tr key={elem._id || idx}>
-                  <td>{elem.name}</td>
-                  <td>{elem.total}</td>
-                  <td>{percentage.toFixed(2)}%</td>
-                  <td>{grade}</td>
-                  <td>{idx + 1}</td>
+                  <td className="td">{elem.name}</td>
+                  <td className="td">{elem.total}</td>
+                  <td className="td">{percentage.toFixed(2)}%</td>
+                  <td className="td">{grade}</td>
+                  <td className="td">{idx + 1}</td>
                 </tr>
               );
             })
