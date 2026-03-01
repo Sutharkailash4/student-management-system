@@ -11,14 +11,14 @@ const Student_list = () => {
     const {data,setData,updateData,setUpdateData} = useContext(Student_data_context); 
 
     const getData = () => {
-        axios.get("https://student-management-system-1-yplg.onrender.com/api/student")
+        axios.get("https://student-management-system-5-1z9q.onrender.com/api/student")
         .then((res)=>{
             setData(res.data.studentData);
         })
     }
 
     const remove = (id) => {
-        axios.delete("https://student-management-system-1-yplg.onrender.com/api/student/"+id)
+        axios.delete("https://student-management-system-5-1z9q.onrender.com/api/student/"+id)
         .then((res)=>{
             getData();
             toast.success("Student Deleted Successfully");
