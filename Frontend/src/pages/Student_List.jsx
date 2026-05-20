@@ -11,14 +11,14 @@ const Student_list = () => {
     const {data,setData,updateData,setUpdateData} = useContext(Student_data_context); 
 
     const getData = () => {
-        axios.get("https://localhost/api/student")
+        axios.get("http://localhost:3000/api/student")
         .then((res)=>{
             setData(res.data.studentData);
         })
     }
 
     const remove = (id) => {
-        axios.delete("https://localhost:3000/api/student/"+id)
+        axios.delete("http://localhost:3000/api/student/"+id)
         .then((res)=>{
             getData();
             toast.success("Student Deleted Successfully");

@@ -37,7 +37,7 @@ const Form = () => {
         }
         else {
             if(!!updateData){
-                axios.patch("https://localhost:3000/api/student/"+updateData._id,{
+                axios.patch("http://localhost:3000/api/student/"+updateData._id,{
                      name : name,
                 class_no : classs,
                 roll_no : roll_no,
@@ -66,7 +66,7 @@ const Form = () => {
             setComputer("");
             setUpdateData(null);
             } else {
-            axios.post("https://localhost:3000/api/student",{
+            axios.post("http://localhost:3000/api/student",{
                 name : name,
                 class_no : classs,
                 roll_no : roll_no,
